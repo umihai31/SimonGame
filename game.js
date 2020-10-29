@@ -13,13 +13,24 @@ var level = 0;
 
 //1. Use jQuery to detect when a keyboard key has been pressed, when that happens for the first time, call nextSequence().
 $(document).keypress(function() {
-  if (!started) {
+  if (started) {
 
     //3. The h1 title starts out saying "Press A Key to Start", when the game has started, change this to say "Level 0".
     $("#level-title").text("Level " + level);
     nextSequence();
     started = true;
   }
+});
+
+$(document.body).click(function(){
+    if (!started) {
+
+      //3. The h1 title starts out saying "Press A Key to Start", when the game has started, change this to say "Level 0".
+      $("#level-title").text("Level " + level);
+      nextSequence();
+      started = true;
+      console.log(started)
+    }
 });
 
 $(".btn").click(function() {
@@ -31,6 +42,7 @@ $(".btn").click(function() {
   animatePress(userChosenColour);
   checkAnswer(userClickedPattern.length - 1);
   console.log(gamePattern.length)
+
 });
 
 function nextSequence() {
